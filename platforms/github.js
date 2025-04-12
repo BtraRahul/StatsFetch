@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
 
   if (!username) return res.status(400).json({ error: "Missing GitHub username" });
 
-  const query = `
+  const query = `  
     query {
       user(login: "${username}") {
         repositories(first: 100, ownerAffiliations: OWNER) {
