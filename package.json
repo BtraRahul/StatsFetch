@@ -1,0 +1,21 @@
+{
+  "name": "fetchingprofilestats",
+  "version": "1.0.0",
+  "description": "Fetches Stats from various profiles",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rahul Batra",
+  "license": "ISC",
+  "dependencies": {
+    "@vendia/serverless-express": "^4.12.6",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9",
+    "vercel": "^41.6.0"
+  }
+}
