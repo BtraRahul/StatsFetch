@@ -6,10 +6,14 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 
 import leetcodeRouter from "../platforms/leetcode.js";
+import githubRouter from "../platforms/github.js";
 
 app.use(express.json());
 // API endpoint to get LeetCode stats
 app.use("/api/leetcode-stats", leetcodeRouter);
+
+// API endpoint to get GitHub stats
+app.use("/api/github-stats", githubRouter);
 
 // Root endpoint with usage instructions
 app.get("/", (req, res) => {

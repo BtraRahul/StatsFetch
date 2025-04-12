@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "nodemon index.js",
+    "dev": "nodemon api/index.js",
+    "start": "nodemon api/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rahul Batra",
@@ -14,7 +14,9 @@
   "dependencies": {
     "@vendia/serverless-express": "^4.12.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "node-fetch": "^3.3.2",
     "nodemon": "^3.1.9",
     "vercel": "^41.6.0"
   }
