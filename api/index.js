@@ -20,12 +20,10 @@ app.get("/", (req, res) => {
 });
 
 // Start the server
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-//   console.log(`Access the API at http://localhost:${PORT}/api/leetcode-stats`);
-//   console.log(
-//     `Default example: http://localhost:${PORT}/api/leetcode-stats?username=abcd`
-//   );
-// });
-
-export default createServerlessExpressHandler({ app });
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+  console.log(`Access the API at http://localhost:${PORT}/api/leetcode-stats`);
+  console.log(
+    `Default example: http://localhost:${PORT}/api/leetcode-stats?username=abcd`
+  );
+});
