@@ -53,7 +53,7 @@ router.post("/", async (req, res) => {
       forks
     });
   } catch (err) {
-    return res.status(500).json({ error: "Failed to fetch GitHub GraphQL stats" });
+    return res.status(500).json({ error: "Failed to fetch GitHub GraphQL stats", err });
   }
 });
 
