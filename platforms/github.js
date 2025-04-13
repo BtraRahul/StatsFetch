@@ -71,6 +71,7 @@ router.post("/", async (req, res) => {
 
   if (!username) {
     return res.status(400).json({ error: "Missing GitHub username" });
+    
   }
 
   const query = `
