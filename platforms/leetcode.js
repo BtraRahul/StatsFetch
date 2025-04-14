@@ -167,10 +167,17 @@ leetcodeRouter.post("/user-contests", async (req, res) => {
         .json({ success: false, error: "Username required" });
     }
 
+
     console.log(`Fetching contest history for: ${username}`);
     const contests = await fetchUserContests(username);
+    if (!contests) {
+      return res.status(404).json({
+        success: false,
+        error: `Either ${username} doesn't exist.`,
+      });
+    }
 
-    res.json({ success: true, data: contests });
+    res.json({ success: true, data: contests, contestsAttended: contests.length });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
