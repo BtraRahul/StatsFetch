@@ -12,13 +12,13 @@ A developer-focused API server that aggregates coding platform stats from **Leet
 - ✅ LeetCode (profile + contests)
 - ✅ GitHub (public repo stats + contribution graph)
 - ✅ Codeforces (profile + contests)
-- ✅ CodeChef (basic profile stats)
+- ✅ CodeChef (basic profile stats + heatmap)
 
 ---
 
 ## 🚀 Live Demo (if hosted)
 
-[Coming Soon]
+https://statsfetch.vercel.app/
 
 ---
 
