@@ -1,7 +1,5 @@
 import express from "express";
 import fetch from "node-fetch";
-import dotenv from "dotenv";
-dotenv.config();
 
 const router = express.Router();
 
@@ -18,6 +16,10 @@ router.post("/", async (req, res) => {
     const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`,{
         method:"GET"
     });
+
+    if (!response.ok) {
+        throw new Error(`API responded with status ${response.status}`);
+    }
 
     console.log(response)
     const { data } = await response.json();
