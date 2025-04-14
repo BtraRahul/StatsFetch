@@ -8,6 +8,7 @@ app.use(cors());
 import leetcodeRouter from "../platforms/leetcode.js";
 import githubRouter from "../platforms/github.js";
 import codechefRouter from "../platforms/codechef.js";
+import codeforcesRouter from "../platforms/codeforces.js";
 
 app.use(express.json());
 // API endpoint to get LeetCode stats
@@ -18,6 +19,10 @@ app.use("/api/github-stats", githubRouter);
 
 // API endpoint to get CodeChef Stats
 app.use("/api/codechef-stats", codechefRouter)
+
+
+// Codeforces API route
+app.use("/api/codeforces", codeforcesRouter);
 
 // Root endpoint with usage instructions
 app.get("/", (req, res) => {
