@@ -123,13 +123,16 @@ export const fetchUserContests = async (username) => {
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const data = await response.json();
+    if (!data.data.userContestRankingHistory) {
+      throw new Error(`User '${username}' not found`);
+    }
     const attendedContests = data.data.userContestRankingHistory.filter(
       (contest) => contest.attended
     );
 
-    console.log(
-      `fetched ` + attendedContests.length + ` contests for user: ${username}`
-    );
+    // console.log(
+    //   `fetched ` + attendedContests.length + ` contests for user: ${username}`
+    // );
 
     return attendedContests;
   } catch (error) {
@@ -148,7 +151,7 @@ leetcodeRouter.post("/", async (req, res) => {
         .json({ success: false, error: "Username required" });
     }
 
-    console.log(`Fetching LeetCode stats for user: ${username}`);
+    // console.log(`Fetching LeetCode stats for user: ${username}`);
     const stats = await fetchLeetCodeStats(username);
 
     res.json({ success: true, data: stats });
@@ -168,8 +171,11 @@ leetcodeRouter.post("/user-contests", async (req, res) => {
     }
 
 
-    console.log(`Fetching contest history for: ${username}`);
+    // console.log(`Fetching contest history for: ${username}`);
     const contests = await fetchUserContests(username);
+    // console.log(
+    //   `Fetched ` + contests.length + ` contests for user: ${username}`
+    // );
     if (!contests) {
       return res.status(404).json({
         success: false,
