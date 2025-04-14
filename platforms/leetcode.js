@@ -173,11 +173,19 @@ leetcodeRouter.post("/user-contests", async (req, res) => {
     if (!contests) {
       return res.status(404).json({
         success: false,
-        error: `Either ${username} doesn't exist.`,
+        error: `${username} doesn't exist.`,
       });
     }
 
-    res.json({ success: true, data: contests, contestsAttended: contests.length });
+    if(contests.length === 0) {
+      return res.status(404).json({
+        success: false,
+        error: `${username} has not attended any contests.`,
+      });
+    }
+
+
+    res.json({ success: true, data: contests, contestsAttendeda: contests.length });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
   }
