@@ -20,9 +20,8 @@ app.use("/api/github-stats", githubRouter);
 // API endpoint to get CodeChef Stats
 app.use("/api/codechef-stats", codechefRouter)
 
-
 // Codeforces API route
-app.use("/api/codeforces", codeforcesRouter);
+app.use("/api/codeforces-stats", codeforcesRouter);
 
 // Root endpoint with usage instructions
 app.get("/", (req, res) => {
