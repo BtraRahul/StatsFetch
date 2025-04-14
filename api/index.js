@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
   res.send(`
     <html>
       <head>
-        <title>Dev Stats API</title>
+        <title> StatsFetch API</title>
         <style>
           body {
             font-family: Arial, sans-serif;
@@ -59,7 +59,7 @@ app.get("/", (req, res) => {
         </style>
       </head>
       <body>
-        <h1>📊 Dev Stats API</h1>
+        <h1>📊 StatsFetch API</h1>
 
         <div class="endpoint">
           <h2>LeetCode</h2>
