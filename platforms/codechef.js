@@ -12,8 +12,12 @@ router.post("/", async (req, res) => {
     return res.status(400).json({ error: "Missing CodeChef username" });
   }
 
+  console.log("fetching data for ", username );
+
   try {
-    const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`);
+    const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`,{
+        method:"GET"
+    });
 
     console.log(response)
     const { data } = await response.json();
