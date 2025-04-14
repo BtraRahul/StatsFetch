@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
     }
 
     console.log(response)
-    const { data } = await response.json();
+    const data  = await response.json();
     console.log(data);
 
     return res.json({
