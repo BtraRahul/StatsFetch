@@ -13,12 +13,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(`https://codechef-api.vercel.app/handle/${username}`);
 
     const { data } = await response.json();
     console.log(data);
