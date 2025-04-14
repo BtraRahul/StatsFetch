@@ -17,7 +17,7 @@ app.use("/api/leetcode-stats", leetcodeRouter);
 app.use("/api/github-stats", githubRouter);
 
 // API endpoint to get CodeChef Stats
-app.use("api/codechef-stats", codechefRouter)
+app.use("/api/codechef-stats", codechefRouter)
 
 // Root endpoint with usage instructions
 app.get("/", (req, res) => {
