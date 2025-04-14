@@ -27,7 +27,7 @@ A developer-focused API server that aggregates coding platform stats from **Leet
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/your-username/statsFetch.git
+   git clone https://github.com/BtraRahul/StatsFetch
    cd statsFetch
    ```
 
