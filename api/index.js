@@ -18,7 +18,7 @@ app.use("/api/leetcode-stats", leetcodeRouter);
 app.use("/api/github-stats", githubRouter);
 
 // API endpoint to get CodeChef Stats
-app.use("/api/codechef-stats", codechefRouter)
+app.use("/api/codechef-stats", codechefRouter);
 
 // Codeforces API route
 app.use("/api/codeforces-stats", codeforcesRouter);
@@ -66,16 +66,52 @@ app.get("/", (req, res) => {
           <p><strong>POST</strong> <code>/api/leetcode-stats</code></p>
           <p>Request body:</p>
           <pre>{
-  "username": "rahulbatra"
+  "username": "johndoe"
 }</pre>
         </div>
+        <div class="endpoint">
+  <h2>LeetCode Contest History</h2>
+  <p><strong>POST</strong> <code>/api/leetcode-stats/user-contests</code></p>
+
+  <p>Request body:</p>
+  <pre>{
+  "username": "johndoe"
+}</pre>
+
+  <p>This endpoint returns your LeetCode contest participation history including rating changes, contest names, rankings, and dates.</p>
+
+  <p><strong>Example cURL:</strong></p>
+  <pre>
+curl -X POST https://fetching-profile-stats.vercel.app/api/leetcode-stats/user-contests \\
+     -H "Content-Type: application/json" \\
+     -d '{
+       "username": "johndoe"
+     }'
+  </pre>
+
+  <p><strong>Sample response:</strong></p>
+  <pre>{
+  "success": true,
+  "data": [
+    {
+      "contest": "Weekly Contest 387",
+      "rating": 1723,
+      "rank": 612,
+      "date": "2024-03-10"
+    },
+    ...
+  ]
+}
+  </pre>
+</div>
+
 
         <div class="endpoint">
   <h2>GitHub</h2>
   <p><strong>POST</strong> <code>/api/github-stats</code></p>
   <p>Request body:</p>
   <pre>{
-  "username": "rahulbatra"
+  "username": "johndoe"
 }</pre>
 
   <p>Backend uses a GitHub Personal Access Token stored in <code>.env</code> as <code>GITHUB_TOKEN</code>.</p>
@@ -101,13 +137,42 @@ app.get("/", (req, res) => {
 
   <p>Use tools like <strong>Postman</strong> or <strong>cURL</strong> to test:</p>
   <pre>
-curl -X POST http://https://fetching-profile-stats.vercel.app/api/github-stats \\
+curl -X POST https://fetching-profile-stats.vercel.app/api/github-stats \\
      -H "Content-Type: application/json" \\
      -d '{
-       "username": "rahulbatra"
+       "username": "johndoe"
      }'
   </pre>
 </div>
+
+<div class="endpoint">
+  <h2>GitHub Stats (using token in header)</h2>
+  <p><strong>POST</strong> <code>/api/github-stats</code></p>
+
+  <p>You can pass your GitHub personal access token directly in the <code>Authorization</code> header instead of setting up a .env file.</p>
+
+  <p><strong>Headers:</strong></p>
+  <pre>
+Authorization: Bearer YOUR_GITHUB_TOKEN
+Content-Type: application/json
+  </pre>
+
+  <p><strong>Request body:</strong></p>
+  <pre>{
+  "username": "johndoe"
+}</pre>
+
+  <p><strong>Example cURL:</strong></p>
+  <pre>
+curl -X POST https://fetching-profile-stats.vercel.app/api/github-stats \\
+     -H "Content-Type: application/json" \\
+     -H "Authorization: Bearer ghp_yourTokenHere" \\
+     -d '{
+       "username": "johndoe"
+     }'
+  </pre>
+</div>
+
 
 
         <div class="endpoint">
@@ -115,25 +180,47 @@ curl -X POST http://https://fetching-profile-stats.vercel.app/api/github-stats \
           <p><strong>POST</strong> <code>/api/codeforces-stats</code></p>
           <p>Request body:</p>
           <pre>{
-  "username": "rahulbatra"
+  "username": "johndoe"
 }</pre>
         </div>
 
         <div class="endpoint">
+  <h2>Codeforces Contest History</h2>
+  <p><strong>POST</strong> <code>/api/codeforces-stats/user-contests</code></p>
+
+  <p>Request body:</p>
+  <pre>{
+  "username": "johndoe"
+}</pre>
+
+  <p>This endpoint returns your Codeforces contest performance data like rank, rating change, and contest name.</p>
+
+  <p><strong>Example cURL:</strong></p>
+  <pre>
+curl -X POST https://fetching-profile-stats.vercel.app/api/codeforces-stats/user-contests \\
+     -H "Content-Type: application/json" \\
+     -d '{
+       "username": "johndoe"
+     }'
+  </pre>
+</div>
+
+
+ <div class="endpoint">
           <h2>CodeChef</h2>
           <p><strong>POST</strong> <code>/api/codechef-stats</code></p>
           <p>Request body:</p>
           <pre>{
-  "username": "rahulbatra"
+  "username": "johndoe"
 }</pre>
         </div>
+
 
         <p>Use a tool like <strong>Postman</strong> or <strong>cURL</strong> to test these endpoints.</p>
       </body>
     </html>
   `);
 });
-
 
 // Start the server
 app.listen(PORT, () => {

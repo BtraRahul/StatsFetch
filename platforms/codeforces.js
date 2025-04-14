@@ -93,4 +93,41 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.post("/user-contests", async (req, res) => {
+  const { username } = req.body;
+
+  if (!username) {
+    return res.status(400).json({ error: "Missing Codeforces username" });
+  }
+
+  try {
+    const response = await fetch(
+      `https://codeforces.com/api/user.rating?handle=${username}`
+    );
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      return res
+        .status(500)
+        .json({ error: "Codeforces API error", details: errorText });
+    }
+
+    const jsonResponse = await response.json();
+
+    if (jsonResponse.status !== "OK") {
+      return res.status(404).json({ error: "User not found on Codeforces" });
+    }
+
+    return res.status(200).json({ success: true, data: jsonResponse.result });
+  } catch (err) {
+    console.error("Error fetching Codeforces contests:", err.message);
+    return res.status(500).json({
+      error: "Failed to fetch Codeforces contests",
+      details: err.message,
+    });
+  }
+}
+);
+
+
 export default router;
