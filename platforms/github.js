@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
   `;
 
   const variables = {
-    userName: username
+    userName: username,
   };
 
   try {
@@ -56,18 +56,40 @@ router.post("/", async (req, res) => {
     const { data } = await response.json();
     const user = data.user;
 
-    const stars = user.repositories.nodes.reduce((acc, repo) => acc + repo.stargazerCount, 0);
-    const forks = user.repositories.nodes.reduce((acc, repo) => acc + repo.forkCount, 0);
+    const stars = user.repositories.nodes.reduce(
+      (acc, repo) => acc + repo.stargazerCount,
+      0
+    );
+    const forks = user.repositories.nodes.reduce(
+      (acc, repo) => acc + repo.forkCount,
+      0
+    );
+    
+    //get totalContribtionsCount
+    const totalContributionResponse = await fetch(
+      `https://github-contributions-api.jogruber.de/v4/${username}`
+    );
+    const { total } = await totalContributionResponse.json();
+    
+    const totalContributions = Object.values(total).reduce(
+      (acc, year) => acc + year,
+      0
+    );
 
     return res.json({
-      contributions: user.contributionsCollection.contributionCalendar.totalContributions,
-      contributionCalendar: user.contributionsCollection.contributionCalendar.weeks,
+      totalContributions: totalContributions,
+      contributions:
+        user.contributionsCollection.contributionCalendar.totalContributions,
+      contributionCalendar:
+        user.contributionsCollection.contributionCalendar.weeks,
       repositories: user.repositories.totalCount,
       stars,
       forks,
     });
   } catch (err) {
-    return res.status(500).json({ error: "Failed to fetch GitHub GraphQL stats", err });
+    return res
+      .status(500)
+      .json({ error: "Failed to fetch GitHub GraphQL stats", err });
   }
 });
 
