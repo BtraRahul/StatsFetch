@@ -75,6 +75,7 @@ router.post("/", async (req, res) => {
       (acc, year) => acc + year,
       0
     );
+    
 
     console.log("totalContributions", totalContributions);
     console.log("stars", stars);  
