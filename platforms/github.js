@@ -76,6 +76,10 @@ router.post("/", async (req, res) => {
       0
     );
 
+    console.log("totalContributions", totalContributions);
+    console.log("stars", stars);  
+    
+
     return res.json({
       totalContributions: totalContributions,
       contributions:
